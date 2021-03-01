@@ -1,0 +1,16 @@
+---
+- name: Install packages
+  hosts: web
+  become: true
+  vars:
+          grpname: database
+          usrname: oracle
+  tasks:
+          - name: Install httpd packages
+            package:
+                    name: '{{item}}'
+                    state: present
+            loop:
+            - tree
+            - java
+            - httpd

@@ -1,0 +1,30 @@
+---
+- name: Creating users and groups
+  hosts: web
+  vars:
+          grp_name: DevOps_2021
+  become: true
+  tasks:
+         - name: Create {{grp_name}} group
+           group:
+                   name: '{{grp_name}}'
+                   state: present
+
+         - name: Creating users for {{grp_name}}
+           user:
+                   name: '{{item.f_name}}'
+                   uid: '{{item.f_uid}}'
+                   group: '{{grp_name}}'
+           loop:
+                   - f_name: nabin
+                     f_uid: 10001
+                   - f_name: niraj
+                     f_uid: 10002
+                   - f_name: ravi
+                     f_uid: 10003
+                   - f_name: rama
+                     f_uid: 10004
+                   - f_name: satya
+                     f_uid: 10005
+                   - f_name: bivek
+                     f_uid: 10006
